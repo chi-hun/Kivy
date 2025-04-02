@@ -3,7 +3,7 @@ name: Buildozer Android Build
 on:
   push:
     branches:
-      - main  # 또는 원하는 브랜치
+      - main
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: 저장소 체크아웃
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Python 설치
         uses: actions/setup-python@v4
@@ -29,7 +29,7 @@ jobs:
         run: buildozer android debug
 
       - name: APK 파일 업로드 (Artifacts)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: built-apk
           path: bin/*.apk
