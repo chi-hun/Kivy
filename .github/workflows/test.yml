@@ -42,7 +42,7 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Install Android SDK Build Tools
-        run: sdkmanager "build-tools;30.0.3" #30.0.3은 예시입니다. 필요에 따라 변경하세요
+        run: sdkmanager "build-tools;30.0.3"
 
       - name: Build APK
         run: |
