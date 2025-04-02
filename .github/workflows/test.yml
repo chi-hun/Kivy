@@ -8,7 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install libtinfo6
-        run: sudo apt-get install libtinfo6
+        run: sudo apt-get update
+             sudo apt-get install libtinfo5
       - name: Build APK
         uses: digreatbrian/buildozer-action@v2
         with:
