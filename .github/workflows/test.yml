@@ -25,7 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install -y git zip unzip openjdk-11-jdk python3.10 python3.10-pip virtualenv libtinfo6
+          sudo apt-get install -y git zip unzip openjdk-11-jdk python3.10 python3.10-distutils virtualenv libtinfo6
+
+      - name: Install pip for python3.10
+        run: |
+          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          python3.10 get-pip.py
 
       - name: Setup virtual environment
         run: |
