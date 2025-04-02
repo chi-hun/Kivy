@@ -18,11 +18,34 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Android SDK 라이선스 수락 및 패키지 설치
+      - name: Android SDK 및 cmdline-tools 설치
         run: |
-          yes | sdkmanager --licenses
-          sdkmanager --update
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;36.0.0"
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk wget unzip
+          mkdir -p $HOME/android-sdk/cmdline-tools
+          cd $HOME/android-sdk/cmdline-tools
+          wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip commandlinetools-linux-11076708_latest.zip -d $HOME/android-sdk/cmdline-tools
+          mv $HOME/android-sdk/cmdline-tools/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
+        env:
+          ANDROID_HOME: $HOME/android-sdk
+          ANDROID_SDK_ROOT: $HOME/android-sdk
+
+      - name: 환경 변수 설정
+        run: |
+          echo "export PATH=$HOME/android-sdk/cmdline-tools/latest/bin:$HOME/android-sdk/platform-tools:$PATH" >> $HOME/.bashrc
+          source $HOME/.bashrc
+        env:
+          ANDROID_HOME: $HOME/android-sdk
+          ANDROID_SDK_ROOT: $HOME/android-sdk
+
+      - name: Android SDK 라이선스 수락
+        run: yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+
+      - name: Android SDK 패키지 설치
+        run: |
+          $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --update
+          $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;36.0.0"
 
       - name: Buildozer 및 의존성 설치
         run: |
