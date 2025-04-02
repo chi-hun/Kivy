@@ -27,6 +27,7 @@ jobs:
           wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
           unzip commandlinetools-linux-11076708_latest.zip -d $ANDROID_HOME/cmdline-tools
           mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+          echo "Android SDK installed at $ANDROID_HOME"
         env:
           ANDROID_HOME: $HOME/android-sdk
           ANDROID_SDK_ROOT: $HOME/android-sdk
@@ -53,7 +54,10 @@ jobs:
           pip install buildozer cython virtualenv
 
       - name: Buildozer 빌드 실행
-        run: buildozer android debug
+        run: |
+          export ANDROID_HOME=$HOME/android-sdk
+          export ANDROID_SDK_ROOT=$HOME/android-sdk
+          buildozer android debug
 
       - name: APK 파일 업로드 (Artifacts)
         uses: actions/upload-artifact@v4
