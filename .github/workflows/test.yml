@@ -12,28 +12,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install dependencies # 종속성 설치 단계
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-11-jdk python3 python3-pip virtualenv
-
-      # libtinfo6 설치 명령어 추가
-      - name: Install libtinfo6
-        run: sudo apt-get install libtinfo6
+          sudo apt-get install -y git zip unzip openjdk-11-jdk python3.11 python3.11-pip virtualenv
 
       - name: Setup virtual environment
         run: |
-          virtualenv venv
+          virtualenv -p python3.11 venv
           source venv/bin/activate
-          pip install buildozer
+          pip install buildozer setuptools
 
       - name: Build APK
         run: |
           source venv/bin/activate
           buildozer android debug
-          
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
         with:
-          name: package
-          path: ./bin/*.apk
+          name: android-apk
+          path: bin/*.apk
