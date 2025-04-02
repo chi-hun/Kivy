@@ -41,8 +41,8 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      - name: Install Android SDK Build Tools
-        run: sdkmanager "build-tools;30.0.3"
+      - name: Print ANDROID_HOME
+        run: echo $ANDROID_HOME
 
       - name: Build APK
         run: |
