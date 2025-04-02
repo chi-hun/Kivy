@@ -27,10 +27,12 @@ jobs:
           cd $ANDROID_HOME/cmdline-tools
           wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
           unzip commandlinetools-linux-11076708_latest.zip -d $ANDROID_HOME/cmdline-tools
+          # 디렉토리 구조 확인
+          echo "디렉토리 구조 확인:"
+          ls -l $ANDROID_HOME/cmdline-tools
+          ls -l $ANDROID_HOME/cmdline-tools/cmdline-tools
           mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
           echo "Android SDK installed at $ANDROID_HOME"
-          # 디렉토리 확인
-          ls -l $ANDROID_HOME/cmdline-tools/latest/bin
         env:
           ANDROID_HOME: $HOME/android-sdk
           ANDROID_SDK_ROOT: $HOME/android-sdk
