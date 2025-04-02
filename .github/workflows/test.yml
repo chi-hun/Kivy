@@ -36,7 +36,13 @@ jobs:
         run: |
           virtualenv -p python3.10 venv
           source venv/bin/activate
-          pip install setuptools==58.0.0 buildozer cython #setuptools 다운그레이드
+          pip install setuptools==58.0.0 buildozer cython
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Install Android SDK Build Tools
+        run: sdkmanager "build-tools;30.0.3" #30.0.3은 예시입니다. 필요에 따라 변경하세요
 
       - name: Build APK
         run: |
