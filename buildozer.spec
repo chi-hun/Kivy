@@ -3,6 +3,10 @@
 # It largely follows the syntax of an .ini file.
 # See the end of the file for more details and warnings about common mistakes.
 
+[python]
+kivy_version = 2.0.0
+python_version = 3.10
+
 [app]
 
 # (str) Title of your application
