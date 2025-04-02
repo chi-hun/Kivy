@@ -45,7 +45,7 @@ jobs:
         run: yes | sdkmanager --licenses
 
       - name: Install Android SDK Build Tools
-        run: sdkmanager "build-tools;30.0.3"
+        run: sdkmanager "build-tools;36.0.0" #설치하고자 하는 빌드툴 버전
 
       - name: Build APK
         run: |
