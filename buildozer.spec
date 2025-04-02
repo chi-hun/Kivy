@@ -7,6 +7,9 @@
 kivy_version = 2.0.0
 python_version = 3.10
 
+[build]
+android.sdk = /usr/local/lib/android/sdk
+
 [app]
 
 # (str) Title of your application
