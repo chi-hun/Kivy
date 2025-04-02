@@ -26,11 +26,12 @@ jobs:
           mkdir -p $ANDROID_HOME/cmdline-tools
           cd $ANDROID_HOME/cmdline-tools
           wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-          unzip commandlinetools-linux-11076708_latest.zip -d $ANDROID_HOME/cmdline-tools
+          unzip commandlinetools-linux-11076708_latest.zip
           # 디렉토리 구조 확인
           echo "디렉토리 구조 확인:"
           ls -l $ANDROID_HOME/cmdline-tools
           ls -l $ANDROID_HOME/cmdline-tools/cmdline-tools
+          # cmdline-tools 폴더를 제대로 이동시키기
           mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
           echo "Android SDK installed at $ANDROID_HOME"
         env:
@@ -72,3 +73,4 @@ jobs:
         with:
           name: built-apk
           path: bin/*.apk
+
