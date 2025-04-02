@@ -3,17 +3,17 @@ name: Build Android APK
 on:
   push:
     branches:
-      - main  # main 브랜치에 푸시될 때 워크플로우 실행
+      - main
   pull_request:
     branches:
-      - main  # main 브랜치에 대한 풀 리퀘스트가 있을 때 워크플로우 실행
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Ubuntu 환경에서 실행
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2  # 저장소 코드 체크아웃
+      - uses: actions/checkout@v2
 
       - name: Update package repositories
         run: sudo apt-get update
@@ -23,23 +23,28 @@ jobs:
           sudo add-apt-repository ppa:deadsnakes/ppa
           sudo apt-get update
 
-      - name: Install dependencies  # 필요한 종속성 설치
+      - name: Install dependencies
         run: |
-          sudo apt-get install -y git zip unzip openjdk-11-jdk python3.11 python3.11-pip virtualenv libtinfo6
+          sudo apt-get install -y git zip unzip openjdk-11-jdk python3.11 python3.11-distutils virtualenv libtinfo6
 
-      - name: Setup virtual environment  # 가상 환경 설정
+      - name: Install pip for python3.11
+        run: |
+          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          python3.11 get-pip.py
+
+      - name: Setup virtual environment
         run: |
           virtualenv -p python3.11 venv
           source venv/bin/activate
           pip install buildozer setuptools
 
-      - name: Build APK  # APK 빌드
+      - name: Build APK
         run: |
           source venv/bin/activate
           buildozer android debug
 
-      - name: Upload APK  # APK 업로드
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: android-apk
-          path: bin/*.apk  # 빌드된 APK 파일 경로
+          path: bin/*.apk
