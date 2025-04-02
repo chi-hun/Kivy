@@ -3,14 +3,14 @@
 # It largely follows the syntax of an .ini file.
 # See the end of the file for more details and warnings about common mistakes.
 
+
+
+[app]
 android.api = 34
 android.minapi = 21
 android.sdk = 36
 android.ndk = 23b
 android.archs = arm64-v8a, armeabi-v7a
-
-[app]
-
 # (str) Title of your application
 title = My Application
 
