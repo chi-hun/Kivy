@@ -39,7 +39,7 @@ jobs:
           pip install setuptools==58.0.0 buildozer cython
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
 
       - name: Accept Android SDK Licenses
         run: echo "y" | sdkmanager --licenses --sdk_root="$ANDROID_HOME"
