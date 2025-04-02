@@ -36,7 +36,7 @@ jobs:
         run: |
           virtualenv -p python3.11 venv
           source venv/bin/activate
-          pip install buildozer setuptools
+          pip install buildozer setuptools cython #cython 추가
 
       - name: Build APK
         run: |
