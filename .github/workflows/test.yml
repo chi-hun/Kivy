@@ -25,18 +25,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install -y git zip unzip openjdk-11-jdk python3.11 python3.11-distutils virtualenv libtinfo6
-
-      - name: Install pip for python3.11
-        run: |
-          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-          python3.11 get-pip.py
+          sudo apt-get install -y git zip unzip openjdk-11-jdk python3.10 python3.10-pip virtualenv libtinfo6
 
       - name: Setup virtual environment
         run: |
-          virtualenv -p python3.11 venv
+          virtualenv -p python3.10 venv
           source venv/bin/activate
-          pip install buildozer setuptools cython #cython 추가
+          pip install buildozer setuptools cython
 
       - name: Build APK
         run: |
