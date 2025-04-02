@@ -10,7 +10,6 @@ android.api = 34
 android.minapi = 21
 android.sdk = 36
 android.ndk = 23b
-android.archs = arm64-v8a, armeabi-v7a
 # (str) Title of your application
 title = My Application
 
