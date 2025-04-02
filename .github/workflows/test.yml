@@ -29,12 +29,17 @@ jobs:
           unzip commandlinetools-linux-11076708_latest.zip -d $ANDROID_HOME/cmdline-tools
           mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
           echo "Android SDK installed at $ANDROID_HOME"
+          # 디렉토리 확인
+          ls -l $ANDROID_HOME/cmdline-tools/latest/bin
         env:
           ANDROID_HOME: $HOME/android-sdk
           ANDROID_SDK_ROOT: $HOME/android-sdk
 
       - name: Accept Android SDK licenses
-        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+        run: |
+          # sdkmanager 경로 확인 후 실행
+          ls -l $ANDROID_HOME/cmdline-tools/latest/bin
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
         env:
           ANDROID_HOME: $HOME/android-sdk
           ANDROID_SDK_ROOT: $HOME/android-sdk
