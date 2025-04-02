@@ -42,10 +42,10 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Accept Android SDK Licenses
-        run: yes | sdkmanager --licenses --sdk_root="$ANDROID_HOME"
+        run: echo "y" | sdkmanager --licenses --sdk_root="$ANDROID_HOME"
 
       - name: Install Android SDK Build Tools
-        run: sdkmanager "build-tools;36.0.0"
+        run: sdkmanager --sdk_root="$ANDROID_HOME" "build-tools;30.0.3"
 
       - name: Build APK
         run: |
